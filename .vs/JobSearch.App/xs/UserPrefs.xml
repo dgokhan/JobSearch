@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{056535FD-283A-4945-B0C3-77E8E12D3A30}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.JobSearch PreferredExecutionTarget="Android.355ea525" />
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="12.3.99.58" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/NavigationService.cs">
+    <Files>
+      <File FileName="Views/FirstPage.xaml" Line="38" Column="54" />
+      <File FileName="ViewModels/FirstPageViewModel.cs" Line="10" Column="18" />
+      <File FileName="Views/MainPage.xaml" Line="1" Column="1" />
+      <File FileName="App.xaml.cs" Line="13" Column="33" />
+      <File FileName="Services/NavigationService.cs" Line="13" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="JobSearch.App" expanded="True">
+            <Node name="JobSearch" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="MainPage.xaml" expanded="True" />
+              </Node>
+              <Node name="App.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.355ea525" />
+</Properties>

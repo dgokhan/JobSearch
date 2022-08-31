@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:JobSearch.Resources.Helpers"
+             xmlns:v="clr-namespace:JobSearch.Views"
+             x:Class="JobSearch.Views.MainPage"
+             NavigationPage.HasNavigationBar="False" 
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="100, *, 60">
+
+        <Grid ColumnDefinitions="*,70"
+              Margin="20,20,20,0">
+            <Label
+                Text="Discover your&#10;dream jobs"
+                FontFamily="RobotoBold" FontSize="24"
+                TextColor="#000000"
+                HorizontalTextAlignment="Start"/>
+
+            <Image Grid.Column="1"
+                    Source="me.jpeg" 
+                    Aspect="AspectFill">
+                <Image.Clip>
+                    <EllipseGeometry 
+                        RadiusX="30"
+                        RadiusY="30"
+                        Center="30,30"/>
+                </Image.Clip>
+
+            </Image>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <Grid RowDefinitions="50,250,50,*">
+
+                <Border Margin="20,0,20,0"
+                    StrokeThickness="4"
+                    StrokeShape="RoundRectangle 20,20,20,20"
+                    Background="#F1F1F1"
+                    HorizontalOptions="Center">
+                    <Border.Stroke>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#F1F1F1" Offset="0.1" />
+                            <GradientStop Color="#F1F1F1" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Grid ColumnDefinitions="40,*">
+                        <Label FontFamily="IconFont" FontSize="20" TextColor="Black"
+                            VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                            Text="{x:Static helpers:IconFontHelper.Magnify}"/>
+
+                        <Entry Grid.Column="1"
+                               Placeholder="Search a job or position"
+                               VerticalTextAlignment="Center" VerticalOptions="Center"/>
+
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Row="1"
+                  Margin="20,30,20,0"
+                  RowDefinitions="30,190,*">
+
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Feautured Jobs" FontFamily="RobotoMedium" FontSize="14" TextColor="#000"/>
+                        <Label Text="See all" FontFamily="RobotoRegular" HorizontalOptions="EndAndExpand" FontSize="10" TextColor="#AFAFAF"/>
+                    </StackLayout>
+
+                    <CollectionView Grid.Row="1"
+                         x:Name="listFeatureInfo"
+                         ItemsSource="{Binding FeaturedJobs}"
+                         HorizontalScrollBarVisibility="Never"  >
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="15"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Margin="0,0,0,0"
+                                    StrokeShape="RoundRectangle 20,20,20,20"
+                                    Background="{Binding BackgroundColor}"
+                                    Stroke="{Binding BackgroundColor}"
+                                    StrokeThickness="1"
+                                    HorizontalOptions="Center">
+
+                                    <Grid RowDefinitions="*,35,*"
+                                          Margin="20,25,0,0"
+                                          WidthRequest="250">
+
+                                        <Grid ColumnDefinitions="60,*"
+                                              ColumnSpacing="10"
+                                              Margin="0,0,0,10">
+                                            <Image Source="{Binding Image}"/>
+
+                                            <Grid Grid.Column="1"
+                                                  RowDefinitions="*,*"
+                                                  VerticalOptions="Center">
+                                                <Label Text="{Binding JobTitle}" TextColor="White"
+                                                    FontFamily="RobotoMedium" FontSize="15"/>
+
+                                                <Label Grid.Row="1"
+                                                    Text="{Binding CompanyName}" TextColor="White"
+                                                    FontFamily="RobotoMedium" FontSize="11"/>
+                                            </Grid>
+
+                                        </Grid>
+  
+                                        <CollectionView  
+                                            Grid.Row="1"   
+                                            ItemsSource="{Binding FeatureInfo}"
+                                            HorizontalScrollBarVisibility="Never" >
+                                            <CollectionView.ItemsLayout>
+                                                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="5"/>
+                                            </CollectionView.ItemsLayout>
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid WidthRequest="75">
+                                                        <Button 
+                                                            Text="{Binding Value}"
+                                                            BackgroundColor="{Binding BackgroundColor}"
+                                                            CornerRadius="15"
+                                                            FontFamily="RobotoRegular" FontSize="11"/>
+                                                    </Grid>
+                                                    
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView> 
+
+                                        <Grid Grid.Row="2"
+                                              Margin="0,20,0,0"
+                                              ColumnDefinitions="*,85">
+
+                                            <Label Text="{Binding CompanyAddress}" TextColor="White"
+                                                   FontFamily="RobotoMedium" FontSize="14"/>
+
+                                            <Label Grid.Column="1"
+                                                Text="{Binding Salary, StringFormat='${0}/year'}" TextColor="White"
+                                                   FontFamily="RobotoMedium" FontSize="14"/>
+                                        </Grid>
+
+                                    </Grid>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.NavigateToDetailPageCommand, 
+                                            Source={x:Reference listFeatureInfo}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+
+                <Grid Grid.Row="2"
+                  Margin="20,20,20,0"
+                  ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+
+                    <Button Grid.Column="0"
+                        Text="All" TextColor="#FFF" 
+                        BackgroundColor="#a41b33"
+                        FontFamily="RobotoMedium" FontSize="10"/>
+
+                    <Button Grid.Column="1"
+                        Text="UI Designer" TextColor="#4C4C4C" 
+                        BackgroundColor="#E7E7E7"
+                        FontFamily="RobotoMedium" FontSize="10"/>
+
+                    <Button Grid.Column="2"
+                        Text="Developer" TextColor="#4C4C4C" 
+                        BackgroundColor="#E7E7E7"
+                        FontFamily="RobotoMedium" FontSize="10"/>
+
+                    <Button Grid.Column="3"
+                        Text="Writer" TextColor="#4C4C4C" 
+                        BackgroundColor="#E7E7E7"
+                        FontFamily="RobotoMedium" FontSize="10"/>
+
+
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      Margin="20,25,20,0"
+                      RowDefinitions="30,*">
+
+                    <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="Recommended Jobs" FontFamily="RobotoMedium" FontSize="14" TextColor="#000"/>
+                        <Label Text="See all" FontFamily="RobotoRegular" HorizontalOptions="EndAndExpand" FontSize="10" TextColor="#AFAFAF"/>
+                    </StackLayout>
+
+                    <CollectionView Grid.Row="1"
+                         x:Name="listRecomendedJobs" 
+                         ItemsSource="{Binding RecomendedJobs}"
+                         HorizontalScrollBarVisibility="Never"  >
+
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                             Span="2"
+                                             VerticalItemSpacing="15"
+                                             HorizontalItemSpacing="15"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border 
+                                        Margin="0,0,0,0" 
+                                        StrokeShape="RoundRectangle 20,20,20,20"
+                                        Background="{Binding BackgroundColor}"
+                                        Stroke="{Binding BackgroundColor}"
+                                        StrokeThickness="1"
+                                        HorizontalOptions="Center">
+
+                                    <Grid RowDefinitions="60,15,35,30"
+                                          Margin="0,20,0,0" RowSpacing="3"
+                                          Background="{Binding BackgroundColor}">
+
+                                        <Image Source="{Binding Image}"/>
+
+                                        <Label Grid.Row="1"
+                                               Text="{Binding JobTitle}" TextColor="#000"
+                                               HorizontalOptions="Center"
+                                               FontFamily="RobotoBold"/>
+
+                                        <Label Grid.Row="2"
+                                               Text="{Binding CompanyName}" TextColor="#000"
+                                               HorizontalOptions="Center"
+                                               FontFamily="RobotoRegular"/>
+
+                                        <Label Grid.Row="3"
+                                               Text="{Binding Salary, StringFormat='${0}/year'}" TextColor="#000"
+                                               HorizontalOptions="Center"
+                                               FontFamily="RobotoBold"/>
+                                    </Grid>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.NavigateToDetailPageCommand, 
+                                            Source={x:Reference listRecomendedJobs}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                </Grid>
+
+            </Grid>
+        </ScrollView>
+
+        <v:TabbarPage 
+             Margin="0,20,0,0" Grid.Row="2" VerticalOptions="EndAndExpand"/>
+
+    </Grid>
+
+
+</ContentPage>
+

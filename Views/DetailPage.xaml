@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobSearch.Views.DetailPage"
+             NavigationPage.HasNavigationBar="False" 
+             BackgroundColor="White">
+
+    <ScrollView>
+        <Grid RowDefinitions="300,30,350,60">
+
+            <Border BackgroundColor="#a41b33"
+                    Stroke="#a41b33"
+                    Margin="-5,0,-5,0"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 0,0,30,30">
+
+                <Grid RowDefinitions="90,50,35,70"
+                      RowSpacing="10"
+                      Margin="0,30,0,0">
+
+                    <Grid ColumnDefinitions="*,*,*">
+
+                        <Image Grid.Column="1" Source="{Binding RecomendedJobs.Image}"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          RowDefinitions="*,*"
+                          VerticalOptions="Center" >
+
+                        <Label Text="{Binding RecomendedJobs.JobTitle}" TextColor="White"
+                               FontFamily="RobotoMedium" FontSize="20" HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="1"
+                               Text="{Binding RecomendedJobs.CompanyName}" TextColor="White" Opacity="0.5"
+                               FontFamily="RobotoMedium" FontSize="14" HorizontalOptions="Center"/>
+                    </Grid>
+
+                    <CollectionView  
+                        Grid.Row="2" HorizontalOptions="Center"  
+                        ItemsSource="{Binding RecomendedJobs.FeatureInfo}"
+                        HorizontalScrollBarVisibility="Never" >
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="5"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="110">
+                                    <Button 
+                                        Text="{Binding Value}"
+                                        BackgroundColor="{Binding BackgroundColor}"
+                                        CornerRadius="15"
+                                        FontFamily="RobotoRegular" FontSize="11"/>
+                                </Grid>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Grid Grid.Row="3" 
+                          Margin="30,20,20,0"
+                          ColumnDefinitions="*,85">
+
+                        <Label Text="{Binding RecomendedJobs.CompanyAddress}" TextColor="White"
+                                FontFamily="RobotoMedium" FontSize="14"/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding RecomendedJobs.Salary, StringFormat='${0}/year'}" TextColor="White"
+                               FontFamily="RobotoMedium" FontSize="14"/>
+                    </Grid>
+                </Grid>
+
+            </Border>
+
+            <Grid Grid.Row="1"
+                  Margin="0,15,0,0"
+                  ColumnDefinitions="*,*,*,*">
+                <Label Text="Description" FontFamily="RobotoRegular" TextColor="Gray" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="1" Text="Recuirement" FontFamily="RobotoBold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="2" Text="About" FontFamily="RobotoRegular" TextColor="Gray" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="3" Text="Reviews" FontFamily="RobotoRegular" TextColor="Gray" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <ScrollView Grid.Row="2"
+                  Margin="10,20,10,0">
+
+                <Grid 
+                  HorizontalOptions="Start">
+                    <Label 
+                    Text="
+  • Plan, think and design how user interact with our product (Start from wireframing into high fidelity mockup esign)&#10;&#10;
+  • Design elements assets based on thorough understanding of the users&#10;&#10;
+  • Create design accross multiples devices standard (Desktop, Android, iOS)&#10;&#10;
+  • Familiar using Sketch (Mac), Adobe Creative Suite (Ai, Ps, Xd), Zeplin, prototyping tools (Marvel/Invision)&#10;&#10;
+  • Bachelor (S1) in computer science (Human Computer Interaction), graphic design or related fields.&#10;&#10;
+  • Pixel perfect&#10;&#10;
+  • Good critical thinking&#10;&#10;
+  • Have a good design taste and keep up with newest design trends&#10;&#10;
+  • Have UI/UX portfolio&#10;&#10;
+  • Solid oral and written communication"
+                    FontFamily="RobotoRegular"
+                    TextColor="Black"/>
+                </Grid>
+            </ScrollView>
+
+            <Button Grid.Row="3"
+                    Margin="20,0,20,0"
+                    Text="Apply Now" 
+                    CornerRadius="20"
+                    BackgroundColor="#342A2A"/>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
+
